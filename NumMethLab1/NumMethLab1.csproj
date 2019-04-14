@@ -43,11 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LuDecomposition.cs" />
-    <Compile Include="Matrix.cs" />
-    <Compile Include="MatrixComputation.cs" />
+    <Compile Include="Matrix\LuDecomposition.cs" />
+    <Compile Include="Matrix\Matrix.cs" />
+    <Compile Include="Matrix\MatrixComputation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solutions\LuSolution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

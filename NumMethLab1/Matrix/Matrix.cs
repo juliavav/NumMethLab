@@ -1,13 +1,9 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NumMethLab1
+namespace NumMethLab1.Matrix
 {
     public class Matrix : IEnumerable<double>
     {
@@ -15,7 +11,7 @@ namespace NumMethLab1
 
         public double this[int i, int j]
         {
-            get=>Elements[i,j];
+            get => Elements[i,j];
             set => Elements[i,j] = value;
         }
         
@@ -84,12 +80,7 @@ namespace NumMethLab1
         //   ;
         //}
 
-        public void Lu()
-        {
-            var lu = new LuDecomposition(this);
-            //luDecomposition = lu;
-        }
-
+        
         public static Matrix ZerosMatrix(int nRows, int nCols)
         {
             double[,] zerosMatrix = new double[nRows,nCols]; 
