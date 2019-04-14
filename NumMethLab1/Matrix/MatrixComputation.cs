@@ -11,7 +11,7 @@ namespace NumMethLab1.Matrix
             if (nA != mB)
                 throw new ArgumentException(
                     "Size not match!");
-            
+
             var ans = new double[mA, nB];
             for (int i = 0; i < mA; ++i)
             {
@@ -36,7 +36,7 @@ namespace NumMethLab1.Matrix
                 }
             }
 
-            return a ;
+            return a;
         }
 
         internal static Matrix Summarize(Matrix a, Matrix b)

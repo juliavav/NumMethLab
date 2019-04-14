@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using NumMethLab1.Matrix;
-using matrix=NumMethLab1.Matrix.Matrix;
+﻿using NumMethLab1.Solutions;
+using System;
+using System.Collections.Generic;
+using matrix = NumMethLab1.Matrix.Matrix;
 
 namespace NumMethLab1
 {
@@ -9,23 +9,37 @@ namespace NumMethLab1
     {
         private static void Main(string[] args)
         {
-            var a = new double[3, 3];
-            a[0, 0] = 1;
-            a[1, 1] = 1;
-            a[2, 2] = 1;
-            double[,] b = {{1, 2, 3}, {1, 2, 3}, {1, 2, 2}};
-            var A = new matrix(a);
-            var B = new matrix(b);
-
-            var result1 = Enumerable.Range(0, B.ColumnCount).Select(i => B[i, i]).Aggregate((x, y) => x * y);
-
-            double[,] c = {{10, 1, 1}, {2, 10, 1}, {2, 2, 10}};
-
-            var C = new matrix(c);
-            var result = new LuDecomposition(C);
-
-            result.LU.Print();
+            Lab1();
+            Console.ReadLine();
+            Console.Clear();
             Console.ReadLine();
         }
+
+        private static void Lab1()
+        {
+            var A = new matrix(MatrixConstants.Lab1Matrix);
+            var b = new List<double>(MatrixConstants.Lab1Vector);
+
+            var solution = new LuSolution(A, b);
+            var answer = solution.GetAnswer();
+            var inverse = A.Inverse();
+            var determinant = A.Determinant();
+
+            Console.WriteLine("A:");
+            A.Print();
+            Console.WriteLine();
+            Console.WriteLine("b:");
+            Print(b);
+            Console.WriteLine();
+            Console.WriteLine("A^(-1):");
+            inverse.Print();
+            Console.WriteLine();
+            Console.WriteLine("X:");
+            Print(answer);
+            Console.WriteLine();
+            Console.WriteLine("Det(A) = {0}", determinant);
+        }
+
+        private static void Print(List<double> inputList) => inputList.ForEach(Console.WriteLine);
     }
 }

@@ -8,10 +8,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>NumMethLab1</RootNamespace>
     <AssemblyName>NumMethLab1</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MatrixConstants.cs" />
     <Compile Include="Matrix\LuDecomposition.cs" />
     <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="Matrix\MatrixComputation.cs" />

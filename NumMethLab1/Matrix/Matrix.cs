@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NumMethLab1.Solutions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,13 @@ namespace NumMethLab1.Matrix
 
         public double this[int i, int j]
         {
-            get => Elements[i,j];
-            set => Elements[i,j] = value;
+            get => Elements[i, j];
+            set => Elements[i, j] = value;
         }
-        
+
         public Matrix(int n, int m)
         {
-            Elements = new double[n,m];
+            Elements = new double[n, m];
         }
 
         public Matrix(int n)
@@ -27,7 +28,7 @@ namespace NumMethLab1.Matrix
 
         public Matrix(Matrix copyMatrix)
         {
-            Elements = new double[copyMatrix.RowCount,copyMatrix.ColumnCount];
+            Elements = new double[copyMatrix.RowCount, copyMatrix.ColumnCount];
             for (int i = 0; i < copyMatrix.RowCount; i++)
             {
                 for (int j = 0; j < copyMatrix.ColumnCount; j++)
@@ -41,7 +42,19 @@ namespace NumMethLab1.Matrix
         {
             Elements = elements;
         }
-       
+
+        public Matrix(List<List<double>> elements)
+        {
+            Elements = new double[elements.Count, elements.Count];
+            for (int i = 0; i < elements.Count; i++)
+            {
+                for (int j = 0; j < elements.Count; j++)
+                {
+                    Elements[i, j] = elements[i][j];
+                }
+            }
+        }
+
         public int RowCount => Elements.GetLength(0);
 
         public int ColumnCount => Elements.GetLength(1);
@@ -69,34 +82,63 @@ namespace NumMethLab1.Matrix
             {
                 for (var i = first; i < ColumnCount; i++)
                 {
-                    var temp = Elements[i, second];
-                    Elements[i, second] = Elements[i, first];
-                    Elements[i, first] = temp;
+                    var temp = Elements[second, i];
+                    Elements[second, i] = Elements[first, i];
+                    Elements[first, i] = temp;
                 }
             }
         }
-        //public Matrix Transpose()
-        //{
-        //   ;
-        //}
 
-        
+        public Matrix Transpose()
+        {
+            var tempElements = new double[RowCount, ColumnCount];
+            for (int i = 0; i < RowCount; i++)
+            {
+                for (int j = 0; j < ColumnCount; j++)
+                {
+                    tempElements[i, j] = Elements[j, i];
+                }
+            }
+
+            return new Matrix(tempElements);
+        }
+
+        public double Determinant()
+        {
+            var lu = new LuDecomposition(this);
+            return lu.Determinant();
+        }
+
+        public Matrix Inverse()
+        {
+            var E = IdentityMatrix(RowCount);
+            var X = new List<List<double>>();
+            for (int i = 0; i < RowCount; i++)
+            {
+                var list = Enumerable.Repeat(0, RowCount).Select(Convert.ToDouble).ToList();
+                list[i] = 1.0;
+                X.Add(new LuSolution(this, list).GetAnswer());
+            }
+
+            return new Matrix(X).Transpose();
+        }
+
         public static Matrix ZerosMatrix(int nRows, int nCols)
         {
-            double[,] zerosMatrix = new double[nRows,nCols]; 
+            double[,] zerosMatrix = new double[nRows, nCols];
             return new Matrix(zerosMatrix);
         }
 
         public static Matrix IdentityMatrix(int matrixSize)
         {
-            double[,] identyMatrix = new double[matrixSize,matrixSize];
+            double[,] identMatrix = new double[matrixSize, matrixSize];
             for (int i = 0; i < matrixSize; i++)
             {
-                identyMatrix[i,i] = 1;
+                identMatrix[i, i] = 1;
             }
-            return new Matrix(identyMatrix);
+            return new Matrix(identMatrix);
         }
-        
+
         IEnumerator<double> IEnumerable<double>.GetEnumerator()
         {
             foreach (var item in Elements)
@@ -113,17 +155,17 @@ namespace NumMethLab1.Matrix
             {
                 for (int j = 0; j < RowCount; j++)
                 {
-                    Console.Write("{0:N} ", Elements[i,j]);
+                    Console.Write("{0:N} ", Elements[i, j]);
                 }
                 Console.WriteLine();
             }
         }
-       
+
         public bool Equals(Matrix other)
         {
             throw new NotImplementedException();
         }
-        
+
     }
 }
 

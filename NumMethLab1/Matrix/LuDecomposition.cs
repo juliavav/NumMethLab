@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NumMethLab1.Matrix
@@ -9,13 +9,13 @@ namespace NumMethLab1.Matrix
         private readonly Matrix a;
         private readonly int matrixSize;
 
-        private readonly Stack swappedElements;
+        public Stack<int> SwappedElements { get; }
 
         public LuDecomposition(Matrix a)
         {
             this.a = a;
             matrixSize = a.ColumnCount;
-            swappedElements = new Stack();
+            SwappedElements = new Stack<int>();
             Decompose();
         }
 
@@ -27,8 +27,8 @@ namespace NumMethLab1.Matrix
         public double Determinant()
         {
             // ReSharper disable once PossibleLossOfFraction
-            return Math.Pow(-1, swappedElements.Count / 2) *
-                   Enumerable.Range(0, matrixSize).Select<int, double>(i => LU[i, i]).Aggregate((x, y) => x * y);
+            return Math.Pow(-1, SwappedElements.Count / 2) *
+                   Enumerable.Range(0, matrixSize).Select(i => LU[i, i]).Aggregate((x, y) => x * y);
         }
 
         private void Decompose()
@@ -45,19 +45,27 @@ namespace NumMethLab1.Matrix
             for (var k = 0; k < matrixSize; k++)
             {
                 double p = 0;
+
                 for (var i = k; i < matrixSize; i++)
-                    if (Math.Abs((double) a[i, k]) > p)
+                    if (Math.Abs(a[i, k]) > p)
                     {
-                        p = Math.Abs((double) a[i, k]);
+                        p = Math.Abs(a[i, k]);
                         currentK = i;
                     }
+
                 if (Math.Abs(p) < double.Epsilon)
                     throw new ArgumentException("Bad matrix");
 
-                L.SwapRows(k, currentK);
-                U.SwapRows(k, currentK);
-                swappedElements.Push(currentK);
-                swappedElements.Push(k);
+                if (k != currentK)
+                {
+                    L.SwapRows(k, currentK);
+                    U.SwapRows(k, currentK);
+                    SwappedElements.Push(currentK);
+                    SwappedElements.Push(k);
+                }
+
+                L[k, k] = 1;
+
 
                 for (var i = k + 1; i < matrixSize; i++)
                 {
