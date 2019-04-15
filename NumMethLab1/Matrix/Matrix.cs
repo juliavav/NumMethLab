@@ -43,6 +43,24 @@ namespace NumMethLab1.Matrix
             Elements = elements;
         }
 
+        public double RateC()
+        {
+            var maximum = 0.0;
+            for (int i = 0; i < RowCount; i++)
+            {
+                var summ = 0.0;
+                for (int j = 0; j < ColumnCount; j++)
+                {
+                    summ += this[j, i];
+                }
+
+                if (maximum < summ)
+                    maximum = summ;
+            }
+
+            return maximum;
+        }
+
         public Matrix(List<List<double>> elements)
         {
             Elements = new double[elements.Count, elements.Count];

@@ -40,8 +40,7 @@ namespace NumMethLab1.Solutions
                 vectorZ[i] = vectorB[i] - sum;
             }
 
-            var vectorX = new List<double>(vectorZ);
-            vectorX[dim - 1] = vectorZ[dim - 1] / lu.U[dim - 1, dim - 1];
+            var vectorX = new List<double>(vectorZ) {[dim - 1] = vectorZ[dim - 1] / lu.U[dim - 1, dim - 1]};
             for (int i = dim-1; i > 0; i--)
             {
                 var sum = 0.0;
@@ -71,6 +70,5 @@ namespace NumMethLab1.Solutions
 
             return inputVector;
         }
-
     }
 }
