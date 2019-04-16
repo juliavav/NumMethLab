@@ -18,7 +18,9 @@ namespace NumMethLab1
 
         public const int N = 5;
 
-        public const double Eps = 0.01;
+        public const double Eps = 0.0000001;
 
+        public static double[,] Lab3Matrix = {{20, 5, 7, 1}, {-1, 13, 0, -7}, {4, -6, 17, 5}, {-9, 8, 4, -25}};
+        public static double[] Lab3Vector = { -117,-1,49,-21};
     }
 }

@@ -8,7 +8,7 @@ namespace NumMethLab1.Vector
     {
         public static void Print(this List<double> inputList) => inputList.ForEach(Console.WriteLine);
 
-        public static double Rate(this List<double> inputList) => inputList.Max(Math.Abs);
+        public static double RateC(this List<double> inputList) => inputList.Max(Math.Abs);
 
         public static List<double> Multiply(this List<double> inputList, int number) => inputList.Select(item => item * number).ToList();
 

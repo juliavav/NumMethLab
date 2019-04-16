@@ -94,6 +94,11 @@ namespace NumMethLab1.Matrix
             return MatrixComputation.Summarize(A, B);
         }
 
+        public static Matrix operator -(Matrix A, Matrix B)
+        {
+            return MatrixComputation.Difference(A, B);
+        }
+
         public void SwapRows(int first, int second)
         {
             if (first != second)
@@ -105,6 +110,20 @@ namespace NumMethLab1.Matrix
                     Elements[first, i] = temp;
                 }
             }
+        }
+
+        public Matrix ToLower()
+        {
+            var answer = new Matrix(this);
+            for (int i = 0; i < RowCount; i++)
+            {
+                for (int j = 0; j < ColumnCount; j++)
+                {
+                    if (j >= i) answer[i, j] = 0;
+                }
+            }
+
+            return answer;
         }
 
         public Matrix Transpose()

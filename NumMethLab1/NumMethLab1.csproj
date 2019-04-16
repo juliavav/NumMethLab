@@ -51,6 +51,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solutions\LuSolution.cs" />
+    <Compile Include="Solutions\SeidelSolution.cs" />
     <Compile Include="Solutions\SimpleIterationSolution.cs" />
     <Compile Include="Solutions\TridiagonalSolution.cs" />
     <Compile Include="Vector\ListExtension.cs" />

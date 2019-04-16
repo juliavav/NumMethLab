@@ -78,6 +78,24 @@ namespace NumMethLab1.Matrix
 
             return answer;
         }
+
+        public static Matrix Difference(Matrix a, Matrix b)
+        {
+            if (a.ColumnCount != b.ColumnCount || a.RowCount != b.RowCount)
+            {
+                throw new ArgumentException("Matrix sizes not match!");
+            }
+
+            for (int i = 0; i < a.RowCount; i++)
+            {
+                for (int j = 0; j < a.ColumnCount; j++)
+                {
+                    a[i, j] -= b[i, j];
+                }
+            }
+
+            return a;
+        }
     }
 }
 

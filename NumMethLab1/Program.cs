@@ -10,7 +10,7 @@ namespace NumMethLab1
     {
         private static void Main(string[] args)
         {
-            Lab2();
+            Lab3();
             Console.ReadLine();
             Console.Clear();
             Lab1();
@@ -29,7 +29,6 @@ namespace NumMethLab1
 
             Console.WriteLine("A:");
             A.Print();
-            var temp = A.RateC();
             Console.WriteLine();
             Console.WriteLine("b:");
             Print(b);
@@ -53,6 +52,33 @@ namespace NumMethLab1
 
             Console.WriteLine("answer:");
             Print(answer);
+        }
+
+        private static void Lab3()
+        {
+            var A = new matrix(Lab3Matrix);
+            var b = new List<double>(Lab3Vector);
+
+
+            var solution = new SimpleIterationSolution(A, b);
+            var answer = solution.GetAnswer();
+
+            Console.WriteLine("A:");
+            A.Print();
+            Console.WriteLine();
+            Console.WriteLine("b:");
+            Print(b);
+            Console.WriteLine("X1:");
+            Print(answer);
+
+            var solution2 = new SeidelSolution(A, b);
+            var answer2 = solution2.GetAnswer();
+            Console.WriteLine("X2:");
+            Print(answer2);
+
+            var answer3 = solution2.GetAnswer2();
+            Console.WriteLine("X3:");
+            Print(answer3);
         }
 
         private static void Print(List<double> inputList) => inputList.ForEach(Console.WriteLine);
