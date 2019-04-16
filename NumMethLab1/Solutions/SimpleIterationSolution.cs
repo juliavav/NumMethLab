@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NumMethLab1.Vector;
 using matrix = NumMethLab1.Matrix.Matrix;
 
 namespace NumMethLab1.Solutions
@@ -20,7 +21,7 @@ namespace NumMethLab1.Solutions
         {
             var vectorBeta = new List<double>(vectorB);
             var matrixAlpha = new matrix(matrix);
-
+            var list = matrixAlpha.Multiply(vectorBeta);
             for (int i = 0; i < dim; i++)
             {
                 vectorBeta[i] /= matrix[i, i];
@@ -30,9 +31,19 @@ namespace NumMethLab1.Solutions
                 }
             }
 
-            return vectorBeta;
+            var vectorX = new List<double>(vectorBeta);
+            var vectorXk = new List<double>();
+
+            do
+            {
+                vectorXk = vectorBeta.Sum(matrixAlpha.Multiply(vectorX));
+            } while (!IsFinished(vectorX, vectorXk));
         }
 
+        public bool IsFinished(List<double> vectorX, List<double> vectorXk)
+        {
+
+        }
 
     }
 }

@@ -18,5 +18,7 @@ namespace NumMethLab1
 
         public const int N = 5;
 
+        public const double Eps = 0.01;
+
     }
 }

@@ -1,8 +1,8 @@
-﻿using NumMethLab1.Solutions;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NumMethLab1.Solutions;
 
 namespace NumMethLab1.Matrix
 {
@@ -51,7 +51,7 @@ namespace NumMethLab1.Matrix
                 var summ = 0.0;
                 for (int j = 0; j < ColumnCount; j++)
                 {
-                    summ += this[j, i];
+                    summ += Math.Abs(this[i, j]);
                 }
 
                 if (maximum < summ)
@@ -133,7 +133,7 @@ namespace NumMethLab1.Matrix
             var X = new List<List<double>>();
             for (int i = 0; i < RowCount; i++)
             {
-                var list = Enumerable.Repeat(0, RowCount).Select(Convert.ToDouble).ToList();
+                var list = Enumerable.Repeat(0.0, RowCount).ToList();
                 list[i] = 1.0;
                 X.Add(new LuSolution(this, list).GetAnswer());
             }
@@ -165,6 +165,11 @@ namespace NumMethLab1.Matrix
         IEnumerator IEnumerable.GetEnumerator()
         {
             yield return this.AsEnumerable();
+        }
+
+        public List<double> Multiply(List<double> inputList)
+        {
+            return MatrixComputation.Multiply(this, inputList);
         }
 
         public void Print()

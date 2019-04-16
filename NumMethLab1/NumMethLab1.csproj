@@ -53,6 +53,7 @@
     <Compile Include="Solutions\LuSolution.cs" />
     <Compile Include="Solutions\SimpleIterationSolution.cs" />
     <Compile Include="Solutions\TridiagonalSolution.cs" />
+    <Compile Include="Vector\ListExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

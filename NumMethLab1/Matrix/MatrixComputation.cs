@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NumMethLab1.Matrix
 {
@@ -55,6 +57,26 @@ namespace NumMethLab1.Matrix
             }
 
             return a;
+        }
+
+        internal static List<double> Multiply(Matrix matrix, List<double> vector)
+        {
+            if (matrix.ColumnCount != vector.Count)
+            {
+                throw new ArgumentException("Sizes not match!");
+            }
+
+            var answer = Enumerable.Repeat(0.0, vector.Count).ToList();
+
+            for (int i = 0; i < matrix.RowCount; i++)
+            {
+                for (int j = 0; j < matrix.ColumnCount; j++)
+                {
+                    answer[i] += vector[j]*matrix[i, j];
+                }
+            }
+
+            return answer;
         }
     }
 }
