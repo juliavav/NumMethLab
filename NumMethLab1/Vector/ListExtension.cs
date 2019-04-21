@@ -17,6 +17,6 @@ namespace NumMethLab1.Vector
         public static List<double> Sum(this List<double> firstList, List<double> secondList) => Enumerable.Range(0, firstList.Count).Select(i => firstList[i] + secondList[i]).ToList();
 
         public static List<double> Difference(this List<double> firstList, List<double> secondList) => Enumerable.Range(0, firstList.Count).Select(i => firstList[i] - secondList[i]).ToList();
-
+        
     }
 }

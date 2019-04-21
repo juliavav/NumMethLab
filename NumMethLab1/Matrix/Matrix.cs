@@ -26,6 +26,24 @@ namespace NumMethLab1.Matrix
             Elements = new double[n, n];
         }
 
+        public Matrix(Vector.Vector a)
+        {
+            Elements = new double[1,a.Length];
+            for (int i = 0; i < a.Length; i++)
+            {
+                Elements[0, i] = a[i];
+            }
+        }
+
+        public Vector.Vector GetColumn(int j)
+        {
+            var result = new List<double>();
+            for (int i = 0; i < this.RowCount; i++)
+            {
+                result.Add(this[i,j]);
+            }
+            return new Vector.Vector(result);
+        }
         public Matrix(Matrix copyMatrix)
         {
             Elements = new double[copyMatrix.RowCount, copyMatrix.ColumnCount];
@@ -99,6 +117,10 @@ namespace NumMethLab1.Matrix
             return MatrixComputation.Difference(A, B);
         }
 
+        public static Matrix operator *(Matrix A, Vector.Vector B)
+        {
+            return A * (new Matrix(B));
+        }
         public void SwapRows(int first, int second)
         {
             if (first != second)
@@ -163,6 +185,12 @@ namespace NumMethLab1.Matrix
         public static Matrix ZerosMatrix(int nRows, int nCols)
         {
             double[,] zerosMatrix = new double[nRows, nCols];
+            return new Matrix(zerosMatrix);
+        }
+
+        public static Matrix ZerosMatrix(int n)
+        {
+            double[,] zerosMatrix = new double[n, n];
             return new Matrix(zerosMatrix);
         }
 

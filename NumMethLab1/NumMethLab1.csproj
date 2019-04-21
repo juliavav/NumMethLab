@@ -48,13 +48,16 @@
     <Compile Include="Matrix\LuDecomposition.cs" />
     <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="Matrix\MatrixComputation.cs" />
+    <Compile Include="Matrix\QrDecomposition.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solutions\LuSolution.cs" />
+    <Compile Include="Solutions\RotationMethod.cs" />
     <Compile Include="Solutions\SeidelSolution.cs" />
     <Compile Include="Solutions\SimpleIterationSolution.cs" />
     <Compile Include="Solutions\TridiagonalSolution.cs" />
     <Compile Include="Vector\ListExtension.cs" />
+    <Compile Include="Vector\Vector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

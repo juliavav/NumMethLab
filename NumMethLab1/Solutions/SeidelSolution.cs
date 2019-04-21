@@ -2,16 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using matrix=NumMethLab1.Matrix.Matrix ;
 
 namespace NumMethLab1.Solutions
 {
     class SeidelSolution
     {
-        private readonly Matrix.Matrix matrix;
+        private readonly matrix matrix;
         private readonly List<double> vectorB;
         private readonly int dim;
 
-        public SeidelSolution(Matrix.Matrix matrix, List<double> vectorB)
+        public SeidelSolution(matrix matrix, List<double> vectorB)
         {
             this.vectorB = vectorB;
             this.matrix = matrix;
@@ -21,7 +22,7 @@ namespace NumMethLab1.Solutions
         public List<double> GetAnswer()
         {
             var vectorBeta = new List<double>(vectorB);
-            var matrixAlpha = new Matrix.Matrix(matrix);
+            var matrixAlpha = new matrix(matrix);
             var matrixDInverse = Matrix.Matrix.IdentityMatrix(matrixAlpha.ColumnCount);
 
             for (int i = 0; i < dim; i++)
@@ -51,7 +52,7 @@ namespace NumMethLab1.Solutions
             return vectorXk;
         }
 
-        public bool IsFinished(List<double> vectorXCurrent, List<double> vectorXPrevious, Matrix.Matrix matrixAlpha, Matrix.Matrix matrixC)
+        public bool IsFinished(List<double> vectorXCurrent, List<double> vectorXPrevious, matrix matrixAlpha, matrix matrixC)
         {
             var vectorDiffRate = vectorXCurrent.Difference(vectorXPrevious).RateC();
             var matrixAlphaRate = matrixAlpha.RateC();
@@ -64,7 +65,7 @@ namespace NumMethLab1.Solutions
         public List<double> GetAnswer2()
         {
             var vectorBeta = new List<double>(vectorB);
-            var matrixAlpha = new Matrix.Matrix(matrix);
+            var matrixAlpha = new matrix(matrix);
             var matrixDInverse = Matrix.Matrix.IdentityMatrix(dim);
 
             for (int i = 0; i < dim; i++)

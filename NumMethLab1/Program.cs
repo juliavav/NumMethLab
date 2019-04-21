@@ -10,7 +10,7 @@ namespace NumMethLab1
     {
         private static void Main(string[] args)
         {
-            Lab3();
+            Lab4();
             Console.ReadLine();
             Console.Clear();
             Lab1();
@@ -79,6 +79,14 @@ namespace NumMethLab1
             var answer3 = solution2.GetAnswer2();
             Console.WriteLine("X3:");
             Print(answer3);
+        }
+
+        private static void Lab4()
+        {
+            var A = new matrix(Lab4Matrix);
+            var answer = new RotationMethod(A).GetAnswer();
+            Console.WriteLine("U matrix:");
+            answer.Print();
         }
 
         private static void Print(List<double> inputList) => inputList.ForEach(Console.WriteLine);

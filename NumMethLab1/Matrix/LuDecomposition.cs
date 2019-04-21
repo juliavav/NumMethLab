@@ -7,14 +7,14 @@ namespace NumMethLab1.Matrix
     public class LuDecomposition
     {
         private readonly Matrix a;
-        private readonly int matrixSize;
+        private readonly int dim;
 
         public Stack<int> SwappedElements { get; }
 
         public LuDecomposition(Matrix a)
         {
             this.a = a;
-            matrixSize = a.ColumnCount;
+            dim = a.ColumnCount;
             SwappedElements = new Stack<int>();
             Decompose();
         }
@@ -28,7 +28,7 @@ namespace NumMethLab1.Matrix
         {
             // ReSharper disable once PossibleLossOfFraction
             return Math.Pow(-1, SwappedElements.Count / 2) *
-                   Enumerable.Range(0, matrixSize).Select(i => LU[i, i]).Aggregate((x, y) => x * y);
+                   Enumerable.Range(0, dim).Select(i => LU[i, i]).Aggregate((x, y) => x * y);
         }
 
         private void Decompose()
@@ -37,16 +37,16 @@ namespace NumMethLab1.Matrix
                 throw new ArgumentException("Matrix can't be null.");
 
             U = new Matrix(a);
-            L = Matrix.IdentityMatrix(matrixSize);
+            L = Matrix.IdentityMatrix(dim);
 
 
             var currentK = 0;
 
-            for (var k = 0; k < matrixSize; k++)
+            for (var k = 0; k < dim; k++)
             {
                 double p = 0;
 
-                for (var i = k; i < matrixSize; i++)
+                for (var i = k; i < dim; i++)
                     if (Math.Abs(a[i, k]) > p)
                     {
                         p = Math.Abs(a[i, k]);
@@ -67,15 +67,15 @@ namespace NumMethLab1.Matrix
                 L[k, k] = 1;
 
 
-                for (var i = k + 1; i < matrixSize; i++)
+                for (var i = k + 1; i < dim; i++)
                 {
                     L[i, k] = U[i, k] / U[k, k];
-                    for (var j = k; j < matrixSize; j++)
+                    for (var j = k; j < dim; j++)
                         U[i, j] = U[i, j] - L[i, k] * U[k, j];
                 }
             }
 
-            LU = new Matrix(L + U + Matrix.IdentityMatrix(matrixSize) * -1);
+            LU = new Matrix(L + U + Matrix.IdentityMatrix(dim) * -1);
         }
     }
 }
