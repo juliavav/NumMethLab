@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NumMethLab1.Services;
 using NumMethLab1.Solutions;
 using static NumMethLab1.MatrixConstants;
 using matrix = NumMethLab1.Matrix.Matrix;
@@ -10,6 +11,7 @@ namespace NumMethLab1
     {
         private static void Main(string[] args)
         {
+            ReadingService.ReadLab1();
             Lab4();
             Console.ReadLine();
             Console.Clear();

@@ -17,22 +17,22 @@ namespace NumMethLab1.Matrix
         {
             this.a = a;
             dim = a.ColumnCount;
-            Decompose();
+            //Decompose();
         }
 
-        private Matrix Decompose()
-        {
+        //private Matrix Decompose()
+        //{
 
-        }
+        //}
 
-        private Matrix GetHouseholderMatrix(vector v)
-        {
+        //private Matrix GetHouseholderMatrix(vector v)
+        //{
 
-        }
+        //}
 
-        private vector CountV(vector b)
-        {
+        //private vector CountV(vector b)
+        //{
              
-        }
+        //}
     }
 }
