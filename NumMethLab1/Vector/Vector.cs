@@ -41,7 +41,7 @@ namespace NumMethLab1.Vector
             set => Elements[i] = value;
         }
 
-        public static double VectorMultiply(Vector a, Vector b)
+        public static double ScalarMultiply(Vector a, Vector b)
         {
             var result = 0.0;
             for (int i = 0; i < a.Length; i++)
@@ -59,13 +59,7 @@ namespace NumMethLab1.Vector
 
         public double Rate2()
         {
-            double sum = 0.0;
-            foreach (var element in Elements)
-            {
-                sum += Pow(element, 2);
-            }
-
-            return Pow(sum, 0.5);
+            return Elements.Rate2();
         }
         public matrix Transpose()
         {
@@ -95,6 +89,12 @@ namespace NumMethLab1.Vector
         public static Vector operator *(Vector a, int b)
         {
             return new Vector(a.Elements.Multiply(b));
+        }
+
+        public static Vector IdentityVector(int identityNumber, int size)
+        {
+            var identityVector = new Vector(size) {[identityNumber] = 1};
+            return identityVector;
         }
 
         public void Print()

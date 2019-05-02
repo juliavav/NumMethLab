@@ -65,7 +65,7 @@ namespace NumMethLab1.Solutions
 
         private double CountPhi(matrix Ak, int iMax, int jMax)
         {
-            return Math.Abs(Ak[iMax, iMax] - Ak[jMax, jMax]) < Double.Epsilon
+            return Abs(Ak[iMax, iMax] - Ak[jMax, jMax]) < Double.Epsilon
                 ? PI / 4
                 : 0.5 * Atan(2.0 * Ak[iMax, jMax] / (Ak[iMax, iMax] - Ak[jMax, jMax]));
         }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
+using NumMethLab1.Matrix;
 using NumMethLab1.Services;
 using NumMethLab1.Solutions;
 using static NumMethLab1.MatrixConstants;
@@ -11,11 +13,7 @@ namespace NumMethLab1
     {
         private static void Main(string[] args)
         {
-            ReadingService.ReadLab1();
-            Lab4();
-            Console.ReadLine();
-            Console.Clear();
-            Lab1();
+            Lab5();
             Console.ReadLine();
         }
 
@@ -91,6 +89,16 @@ namespace NumMethLab1
             answer.Print();
         }
 
+        private static void Lab5()
+        {
+            var A = new matrix(Lab5Matrix);
+            var answer = new QrMethod(A).GetAnswer();
+            Console.WriteLine("Eigenvalues");
+            Print(answer);
+        }
+
         private static void Print(List<double> inputList) => inputList.ForEach(Console.WriteLine);
+
+        private static void Print(List<Complex> inputList) => inputList.ForEach(item => Console.WriteLine("({0}, {1}i)",item.Real,item.Imaginary));
     }
 }

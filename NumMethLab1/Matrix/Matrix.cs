@@ -107,6 +107,11 @@ namespace NumMethLab1.Matrix
             return MatrixComputation.Multiply(A, number);
         }
 
+        public static Matrix operator *(Matrix A, double number)
+        {
+            return MatrixComputation.Multiply(A, number);
+        }
+
         public static Matrix operator +(Matrix A, Matrix B)
         {
             return MatrixComputation.Summarize(A, B);
@@ -120,6 +125,11 @@ namespace NumMethLab1.Matrix
         public static Matrix operator *(Matrix A, Vector.Vector B)
         {
             return A * (new Matrix(B));
+        }
+
+        public static Matrix operator *(Vector.Vector B, Matrix A)
+        {
+            return (new Matrix(B))*A;
         }
         public void SwapRows(int first, int second)
         {

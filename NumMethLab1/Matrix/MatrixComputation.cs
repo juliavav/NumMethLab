@@ -96,6 +96,19 @@ namespace NumMethLab1.Matrix
 
             return a;
         }
+
+        public static Matrix Multiply(Matrix a, double number)
+        {
+            for (int i = 0; i < a.ColumnCount; i++)
+            {
+                for (int j = 0; j < a.RowCount; j++)
+                {
+                    a[i, j] *= number;
+                }
+            }
+
+            return a;
+        }
     }
 }
 

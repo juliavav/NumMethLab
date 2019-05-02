@@ -10,6 +10,17 @@ namespace NumMethLab1.Vector
 
         public static double RateC(this List<double> inputList) => inputList.Max(Math.Abs);
 
+        public static double Rate2(this List<double> inputList)
+        {
+            double sum = 0.0;
+            foreach (var element in inputList)
+            {
+                sum += Math.Pow(element, 2);
+            }
+
+            return Math.Pow(sum, 0.5);
+        }
+
         public static List<double> Multiply(this List<double> inputList, int number) => inputList.Select(item => item * number).ToList();
 
         public static List<double> Multiply(this List<double> inputList, double number) => inputList.Select(item => item * number).ToList();
