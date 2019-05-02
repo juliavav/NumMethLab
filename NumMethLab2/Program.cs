@@ -4,9 +4,9 @@ using static NumMethLab2.Solutions.FunctionMethods;
 
 namespace NumMethLab2
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine($"Eps ={Constants.Eps}");
             Lab1();
@@ -27,7 +27,7 @@ namespace NumMethLab2
             var newton = new NewtonMethod(F, Df, Constants.A, Constants.B);
             Console.WriteLine(newton.GetAnswer());
 
-            var simple = new SimpleIterations(F,Df,Phi,Dphi,Constants.A,Constants.B);
+            var simple = new SimpleIterations(F, Df, Phi, Dphi, Constants.A, Constants.B);
             Console.WriteLine(simple.GetAnswer());
         }
     }
