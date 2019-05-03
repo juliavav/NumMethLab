@@ -1,17 +1,18 @@
-﻿using System;
-using static System.Math;
-
-namespace NumMethLab2.Solutions
+﻿namespace NumMethLab2.Solutions
 {
-    public class SimpleIterations
+    using System;
+    using static System.Math;
+
+    class SimpleIterationsV2
     {
+
         private readonly double a;
         private readonly double b;
         private readonly Func<double, double> dphi;
         private readonly Func<double, double> f;
         private readonly Func<double, double> phi;
 
-        public SimpleIterations(Func<double, double> f, Func<double, double> phi,Func<double, double> dphi, double a, double b)
+        public SimpleIterationsV2(Func<double, double> f, Func<double, double> phi, Func<double, double> dphi, double a, double b)
         {
             this.f = f;
             this.phi = phi;
@@ -37,7 +38,7 @@ namespace NumMethLab2.Solutions
                 xCurrent = phi(xPrevious);
             }
 
-            Console.WriteLine("Number of Iterations Simple:{0}", numberOfIterations);
+            Console.WriteLine("Number of Iterations Simple V2:{0}", numberOfIterations);
             return xCurrent;
         }
     }

@@ -20,8 +20,8 @@ namespace NumMethLab2.Solutions
 
         public double GetAnswer()
         {
-            var xCurrent = a;
-            var xPrevious = b;
+            var xCurrent = b;
+            var xPrevious = a;
 
             var numberOfIterations = 0;
 
@@ -29,9 +29,8 @@ namespace NumMethLab2.Solutions
             {
                 numberOfIterations++;
 
-                var xTemp = xCurrent;
+                xPrevious = xCurrent;
                 xCurrent = xPrevious - f(xPrevious) / df(xPrevious);
-                xPrevious = xTemp;
             }
 
             Console.WriteLine("Number of Iterations Newton:{0}", numberOfIterations);

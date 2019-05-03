@@ -48,7 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solutions\FunctionMethods.cs" />
     <Compile Include="Solutions\NewtonMethod.cs" />
+    <Compile Include="Solutions\NewtonMethodSystem.cs" />
     <Compile Include="Solutions\SimpleIterations.cs" />
+    <Compile Include="Solutions\SimpleIterationsSystem.cs" />
+    <Compile Include="Solutions\SimpleIterationsV2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

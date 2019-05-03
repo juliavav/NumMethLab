@@ -25,6 +25,11 @@ namespace NumMethLab1.Vector
             Elements = list;
         }
 
+        public Vector(double[] list)
+        {
+            Elements = list.ToList();
+        }
+
         public Vector(Vector vector)
         {
             Elements = new List<double>();
