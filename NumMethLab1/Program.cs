@@ -13,12 +13,16 @@ namespace NumMethLab1
     {
         private static void Main(string[] args)
         {
+            Lab1();
+            Lab3();
+            Lab4();
             Lab5();
             Console.ReadLine();
         }
 
         private static void Lab1()
         {
+            ReadingService.ReadLab1();
             var A = new matrix(Lab1Matrix);
             var b = new List<double>(Lab1Vector);
 
@@ -56,6 +60,7 @@ namespace NumMethLab1
 
         private static void Lab3()
         {
+            ReadingService.ReadLab3();
             var A = new matrix(Lab3Matrix);
             var b = new List<double>(Lab3Vector);
 
@@ -83,6 +88,7 @@ namespace NumMethLab1
 
         private static void Lab4()
         {
+            ReadingService.ReadLab4();
             var A = new matrix(Lab4Matrix);
             var answer = new RotationMethod(A).GetAnswer();
             Console.WriteLine("U matrix:");
@@ -91,6 +97,7 @@ namespace NumMethLab1
 
         private static void Lab5()
         {
+            ReadingService.ReadLab5();
             var A = new matrix(Lab5Matrix);
             var answer = new QrMethod(A).GetAnswer();
             Console.WriteLine("Eigenvalues");
