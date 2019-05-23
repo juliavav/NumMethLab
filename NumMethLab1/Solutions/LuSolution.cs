@@ -28,40 +28,34 @@ namespace NumMethLab1.Solutions
             var lu = new LuDecomposition(matrix);
             vectorB = SwapVector(vectorB, lu.SwappedElements);
             var vectorZ = new List<double>(vectorB);
-            
-            for (int i = 1; i < dim; i++)
+             
+            for (int i = 0; i < dim-1; i++)
             {
-                var sum = 0.0;
-                for (int j = 0; j < i; j++)
+                for (int j = i+1; j < dim; j++)
                 {
-                    sum += lu.L[i, j] * vectorZ[j];
+                    vectorZ[j] -= lu.L[j,i] * vectorZ[i];
                 }
-
-                vectorZ[i] = vectorB[i] - sum;
             }
 
-            var vectorX = new List<double>(vectorZ) {[dim - 1] = vectorZ[dim - 1] / lu.U[dim - 1, dim - 1]};
-            for (int i = dim-1; i > 0; i--)
+            for (int i = dim-1; i >= 0; i--)
             {
-                var sum = 0.0;
-                for (int j = i; j < dim; j++)
+                vectorZ[i] /= lu.U[i, i];
+;                for (int j = i-1; j >= 0; j--)
                 {
-                    sum += lu.U[i - 1, j] * vectorX[j];
+                    vectorZ[j] -= lu.U[j, i] * vectorZ[i];
                 }
-
-                vectorX[i - 1] = (vectorZ[i - 1] - sum) / lu.U[i - 1, i - 1];
             }
 
 
-            return vectorX;
+            return vectorZ;
         }
 
-        private List<double> SwapVector(List<double> inputVector, Stack<int> stack)
+        private List<double> SwapVector(List<double> inputVector, Queue<int> queue)
         {
-            while (stack.Count != 0)
+            while (queue.Count != 0)
             {
-                var firstIndex = stack.Pop();
-                var secondIndex = stack.Pop();
+                var firstIndex = queue.Dequeue();
+                var secondIndex = queue.Dequeue();
 
                 var temp = inputVector[firstIndex];
                 inputVector[firstIndex] = inputVector[secondIndex];

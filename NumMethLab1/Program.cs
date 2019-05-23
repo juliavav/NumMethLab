@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using NumMethLab1.Matrix;
 using NumMethLab1.Services;
@@ -24,18 +25,19 @@ namespace NumMethLab1
         {
             ReadingService.ReadLab1();
             var A = new matrix(Lab1Matrix);
+            Console.WriteLine("A:");
+            A.Print();
             var b = new List<double>(Lab1Vector);
 
-            var solution = new LuSolution(A, b);
+            var solution = new LuSolution(new matrix(A), b);
             var answer = solution.GetAnswer();
             var inverse = A.Inverse();
             var determinant = A.Determinant();
 
-            Console.WriteLine("A:");
-            A.Print();
+            
             Console.WriteLine();
             Console.WriteLine("b:");
-            Print(b);
+            Print(Lab1Vector.ToList());
             Console.WriteLine();
             Console.WriteLine("A^(-1):");
             inverse.Print();

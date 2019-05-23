@@ -186,7 +186,7 @@ namespace NumMethLab1.Matrix
             {
                 var list = Enumerable.Repeat(0.0, RowCount).ToList();
                 list[i] = 1.0;
-                X.Add(new LuSolution(this, list).GetAnswer());
+                X.Add(new LuSolution(new Matrix(this),list).GetAnswer());
             }
 
             return new Matrix(X).Transpose();

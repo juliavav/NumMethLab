@@ -6,16 +6,16 @@ namespace NumMethLab1.Matrix
 {
     public class LuDecomposition
     {
-        private readonly Matrix a;
+        private Matrix a;
         private readonly int dim;
 
-        public Stack<int> SwappedElements { get; }
+        public Queue<int> SwappedElements { get; }
 
         public LuDecomposition(Matrix a)
         {
             this.a = a;
             dim = a.ColumnCount;
-            SwappedElements = new Stack<int>();
+            SwappedElements = new Queue<int>();
             Decompose();
         }
 
@@ -36,7 +36,8 @@ namespace NumMethLab1.Matrix
             if (a == null)
                 throw new ArgumentException("Matrix can't be null.");
 
-            U = new Matrix(a);
+            U = Matrix.IdentityMatrix(dim);
+            var A = new Matrix(a);
             L = Matrix.IdentityMatrix(dim);
 
 
@@ -56,25 +57,33 @@ namespace NumMethLab1.Matrix
                 if (Math.Abs(p) < double.Epsilon)
                     throw new ArgumentException("Bad matrix");
 
-                if (k != currentK)
+                if (k < currentK)
                 {
-                    L.SwapRows(k, currentK);
-                    U.SwapRows(k, currentK);
-                    SwappedElements.Push(currentK);
-                    SwappedElements.Push(k);
+                    A.SwapRows(k,currentK);
+                    a.SwapRows(k,currentK);
+                    SwappedElements.Enqueue(currentK);
+                    SwappedElements.Enqueue(k);
                 }
 
                 L[k, k] = 1;
+                U[k, k] = A[k, k];
 
 
                 for (var i = k + 1; i < dim; i++)
                 {
-                    L[i, k] = U[i, k] / U[k, k];
-                    for (var j = k; j < dim; j++)
-                        U[i, j] = U[i, j] - L[i, k] * U[k, j];
+                    L[i, k] = A[i, k] / U[k, k];
+                    U[k, i] = A[k, i];  
                 }
+
+                for (int i = k+1; i < dim; i++)
+                {
+                    for (var j = k+1; j < dim; j++)
+                        A[i, j] = A[i, j] - L[i, k] * U[k, j];
+                }
+
             }
 
+            var temp = L * U;
             LU = new Matrix(L + U + Matrix.IdentityMatrix(dim) * -1);
         }
     }
