@@ -3,7 +3,7 @@ using static NumMethLab1.MatrixConstants;
 
 namespace NumMethLab1.Solutions
 {
-    class TridiagonalSolution
+    public class TridiagonalSolution
     {
         private List<double> a;
         private List<double> b;

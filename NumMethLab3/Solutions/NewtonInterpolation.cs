@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NumMethLab3.Solutions
 {
     class NewtonInterpolation
     {
-        private readonly double[] fi;
+        private Func<double, double> fi;
         private readonly double[] xi;
         private readonly int n;
         private string answer;
 
-        public NewtonInterpolation(double[] fi,double[] xi)
+        public NewtonInterpolation(Func<double, double> fi, double[] xi)
         {
             this.fi = fi;
             this.xi = xi;
@@ -38,25 +35,26 @@ namespace NumMethLab3.Solutions
                 resultSum *= coefficients[i];
                 result += resultSum;
             }
-            Console.WriteLine(answer.Remove(answer.Length-2));
+            Console.WriteLine(answer.Remove(answer.Length - 2));
             return result;
         }
 
-        private double H(int i) => xi[i] - xi[i - 1];
-        private double[] CountA()
+        private double[] CountCoefficients(double x)
         {
-           var a = fi;
-           return a;
-        }
+            var y = xi.Select(point => fi(point)).ToArray();
+            var coefficients = new double[y.Length];
+            y.CopyTo(coefficients, 0);
 
-        private double[] CountB(double[] c)
-        {
-            var b = new double[n];
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i < coefficients.Length; i++)
             {
-                b[i] = (fi[i+1]-fi[i])/H(i) - 1/3.0*H(i)*(c[i+1]+2*c[i])
-            }
-        }
+                for (int j = coefficients.Length - 1; j > i - 1; j--)
+                {
+                    coefficients[j] = (coefficients[j] - coefficients[j - 1]) / (xi[j] - xi[j - i]);
+                }
 
+            }
+
+            return coefficients;
+        }
     }
 }

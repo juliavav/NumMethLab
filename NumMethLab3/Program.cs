@@ -24,6 +24,7 @@ namespace NumMethLab3
             Console.WriteLine();
             Console.WriteLine($"ln({Constants.X}) = {Math.Log(Constants.X)}");
             Console.ReadLine();
+            var spline = new SplineInterpolation();
         }
     }
 }
