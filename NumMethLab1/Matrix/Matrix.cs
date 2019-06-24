@@ -28,10 +28,19 @@ namespace NumMethLab1.Matrix
 
         public Matrix(Vector.Vector a)
         {
-            Elements = new double[1,a.Length];
+            Elements = new double[1, a.Length];
             for (int i = 0; i < a.Length; i++)
             {
                 Elements[0, i] = a[i];
+            }
+        }
+
+        public Matrix(Vector.Vector a, bool t)
+        {
+            Elements = new double[a.Length, 1];
+            for (int i = 0; i < a.Length; i++)
+            {
+                Elements[i, 0] = a[i];
             }
         }
 
@@ -79,14 +88,26 @@ namespace NumMethLab1.Matrix
             return maximum;
         }
 
+        //public Matrix(List<List<double>> elements)
+        //{
+        //    Elements = new double[elements.Count, elements.Count];
+        //    for (int i = 0; i < elements.Count; i++)
+        //    {
+        //        for (int j = 0; j < elements.Count; j++)
+        //        {
+        //            Elements[i, j] = elements[i][j];
+        //        }
+        //    }
+        //}
+
         public Matrix(List<List<double>> elements)
         {
-            Elements = new double[elements.Count, elements.Count];
-            for (int i = 0; i < elements.Count; i++)
+            Elements = new double[elements[0].Count, elements.Count];
+            for (int i = 0; i < elements[0].Count; i++)
             {
                 for (int j = 0; j < elements.Count; j++)
                 {
-                    Elements[i, j] = elements[i][j];
+                    Elements[i, j] = elements[j][i];
                 }
             }
         }
@@ -160,12 +181,12 @@ namespace NumMethLab1.Matrix
 
         public Matrix Transpose()
         {
-            var tempElements = new double[RowCount, ColumnCount];
+            var tempElements = new double[ColumnCount, RowCount];
             for (int i = 0; i < RowCount; i++)
             {
                 for (int j = 0; j < ColumnCount; j++)
                 {
-                    tempElements[i, j] = Elements[j, i];
+                    tempElements[j, i] = Elements[i, j];
                 }
             }
 

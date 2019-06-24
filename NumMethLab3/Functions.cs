@@ -10,5 +10,7 @@ namespace NumMethLab3
     {
         public static double f1(double x) => Math.Log(x);
 
+        public static double f5(double x) => 1/((2*x+7)*(3*x+4));
+
     }
 }
