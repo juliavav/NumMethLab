@@ -107,18 +107,18 @@ namespace NumMethLab4.Solutions
             y.Print();
             Console.WriteLine("Euler:");
             var eulerY1 = Euler(h);
-           // eulerY1.Print();
+            eulerY1[0].Print();
             var eulerY2 = Euler(h2);
-            //var diff = eulerY1.Difference(eulerY2);
-            //var rrEuler = diff.Select(i => i /( k - 1)).Select(Math.Abs).ToList();
+            var diff = eulerY1[0].Difference(eulerY2[0]);
+            var rrEuler = diff.Select(i => i /( k - 1)).Select(Math.Abs).ToList();
             Console.WriteLine("Euler RR Error:");
-            //rrEuler.Print();
+            rrEuler.Print();
 
             Console.WriteLine("RungeKutta:");
             var rY1 = RungeKutta(h)[0];
             rY1.Print();
             var rY2 = RungeKutta(h2)[0];
-            var diff = rY1.Difference(rY2);
+            diff = rY1.Difference(rY2);
             var rrRungeKutta = diff.Select(i => i / (Math.Pow(k,4)-1)).Select(Math.Abs).ToList();
             Console.WriteLine("RungeKutta RR Error:");
             rrRungeKutta.Print();
