@@ -10,14 +10,14 @@ namespace NumMethLab4.Solutions
         private readonly Func<double, double, double, double> cauchyFunc;
         private readonly double y0;
         private readonly double yD0;
-        private readonly int a;
-        private readonly int b;
+        private readonly double a;
+        private readonly double b;
         private readonly double h;
         private readonly Func<double, double> accurateSolution;
         private readonly double n;
         private List<double> x;
 
-        public CauchyProblem(Func<double, double, double, double> cauchyFunc, double y0, double yD0, int a, int b, double h, Func<double, double> accurateSolution)
+        public CauchyProblem(Func<double, double, double, double> cauchyFunc, double y0, double yD0, double a, double b, double h, Func<double, double> accurateSolution)
         {
             this.cauchyFunc = cauchyFunc;
             this.y0 = y0;
@@ -37,18 +37,18 @@ namespace NumMethLab4.Solutions
 
         private double G(double x, double y, double z) => z;
 
-        public List<double> Euler(double h)
+        public List<List<double>> Euler(double h)
         {
             var y = new List<double> { y0 };
-            var z = yD0;
+            var z = new List<double> { yD0 };
 
             for (int i = 0; i < n; i++)
             {
-                z += h * cauchyFunc(x[i], y[i], z);
-                y.Add(y[i] + h * G(x[i], y[i], z));
+                z.Add( z[i]+h * cauchyFunc(x[i], y[i], z[i]));
+                y.Add(y[i] + h * G(x[i], y[i], z[i]));
             }
-
-            return y;
+            var result = new List<List<double>>{y,z};
+            return result;
         }
 
         public List<List<double>> RungeKutta(double h)
@@ -56,7 +56,7 @@ namespace NumMethLab4.Solutions
             var y = new List<double> { y0 };
             var z = new List<double> { yD0 };
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n-1; i++)
             {
                 var k1 = h * G(x[i], y[i], z[i]);
                 var q1 = h * cauchyFunc(x[i], y[i], z[i]);
@@ -107,18 +107,18 @@ namespace NumMethLab4.Solutions
             y.Print();
             Console.WriteLine("Euler:");
             var eulerY1 = Euler(h);
-            eulerY1.Print();
+           // eulerY1.Print();
             var eulerY2 = Euler(h2);
-            var diff = eulerY1.Difference(eulerY2);
-            var rrEuler = diff.Select(i => i /( k - 1)).Select(Math.Abs).ToList();
+            //var diff = eulerY1.Difference(eulerY2);
+            //var rrEuler = diff.Select(i => i /( k - 1)).Select(Math.Abs).ToList();
             Console.WriteLine("Euler RR Error:");
-            rrEuler.Print();
+            //rrEuler.Print();
 
             Console.WriteLine("RungeKutta:");
             var rY1 = RungeKutta(h)[0];
             rY1.Print();
             var rY2 = RungeKutta(h2)[0];
-            diff = rY1.Difference(rY2);
+            var diff = rY1.Difference(rY2);
             var rrRungeKutta = diff.Select(i => i / (Math.Pow(k,4)-1)).Select(Math.Abs).ToList();
             Console.WriteLine("RungeKutta RR Error:");
             rrRungeKutta.Print();

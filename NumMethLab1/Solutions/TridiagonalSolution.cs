@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using NumMethLab1.Vector;
 using static NumMethLab1.MatrixConstants;
 
 namespace NumMethLab1.Solutions
@@ -21,32 +22,27 @@ namespace NumMethLab1.Solutions
 
         public List<double> GetAnswer()
         {
-            var p = new List<double>();
-            var q = new List<double>();
             var n = d.Count;
+            var p = Enumerable.Repeat(0.0, n).ToList();
+            var q = Enumerable.Repeat(0.0, n).ToList();
 
-            double p0 = -c[0] / b[0];
-            double q0 = d[0] / b[0];
-
-            p.Add(p0);
-            q.Add(q0);
+            p[0] = -c[0] / b[0];
+            q[0] = d[0] / b[0];
 
             for (int i = 1; i < n; ++i)
             {
-                p0 = -c[i] / (b[i] + a[i] * p[i - 1]);
-                q0 = (d[i] - a[i] * q[i - 1]) / (b[i] + a[i] * p[i - 1]);
-                p.Add(p0);
-                q.Add(q0);
+                p[i] = -c[i] / (a[i] * p[i - 1] + b[i]);
+                q[i] = (d[i] - a[i] * q[i - 1]) / (a[i] * p[i - 1] + b[i]);
             }
 
             var x = Enumerable.Repeat(0.0,n).ToList();
-            double xN = q[n - 1];
             x[n - 1] = q[n - 1];
-            for (int i = n - 2; i > -1; --i)
+            for (int i = n - 1; i >0; --i)
             {
-                x[i] = p[i]*x[i+1]+q[i];
+                x[i-1] = p[i-1]*x[i]+q[i-1];
                 
             }
+            
 
             return x;
         }
