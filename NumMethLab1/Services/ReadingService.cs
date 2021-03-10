@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +14,7 @@ namespace NumMethLab1.Services
         {
             try
             {   // Open the text file using a stream reader.C:\Users\user\Source\Repos\NumMethLab1\NumMethLab1\Data\lab5.txt
-                using (StreamReader sr = new StreamReader("C:\\Users\\user\\Source\\Repos\\NumMethLab1\\NumMethLab1\\Data\\lab1.txt"))
+                using (StreamReader sr = new StreamReader("..\\..\\Data\\lab1.txt"))
                 //using (StreamReader sr = new StreamReader("C:\\Users\\julia\\source\\repos\\NumMethLab\\NumMethLab1\\Data\\lab1.txt"))
                 {
 
@@ -58,7 +58,7 @@ namespace NumMethLab1.Services
         {
             try
             {   // Open the text file using a stream reader.
-                using (StreamReader sr = new StreamReader("C:\\Users\\user\\Source\\Repos\\NumMethLab1\\NumMethLab1\\Data\\lab3.txt"))
+                using (StreamReader sr = new StreamReader("..\\..\\Data\\lab3.txt"))
                     //using (StreamReader sr = new StreamReader("C:\\Users\\julia\\source\\repos\\NumMethLab\\NumMethLab1\\Data\\lab3.txt"))
                 {
 
@@ -102,7 +102,7 @@ namespace NumMethLab1.Services
         {
             try
             {   // Open the text file using a stream reader.
-                using (StreamReader sr = new StreamReader("C:\\Users\\user\\Source\\Repos\\NumMethLab1\\NumMethLab1\\Data\\lab4.txt"))
+                using (StreamReader sr = new StreamReader("..\\..\\Data\\lab4.txt"))
                     //using (StreamReader sr = new StreamReader("C:\\Users\\julia\\source\\repos\\NumMethLab\\NumMethLab1\\Data\\lab4.txt"))
                 {
 
@@ -134,7 +134,7 @@ namespace NumMethLab1.Services
         {
             try
             {   // Open the text file using a stream reader.
-                using (StreamReader sr = new StreamReader("C:\\Users\\user\\Source\\Repos\\NumMethLab1\\NumMethLab1\\Data\\lab5.txt"))
+                using (StreamReader sr = new StreamReader("..\\..\\Data\\lab5.txt"))
                     //using (StreamReader sr = new StreamReader("C:\\Users\\julia\\source\\repos\\NumMethLab\\NumMethLab1\\Data\\lab5.txt"))
                 {
 
