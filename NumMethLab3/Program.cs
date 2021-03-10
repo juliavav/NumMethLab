@@ -12,8 +12,10 @@ namespace NumMethLab3
     {
         static void Main(string[] args)
         {
-            //lab1();
-            //lab2();
+            lab1();
+            lab2();
+            lab3();
+            lab4();
             lab5();
             Console.ReadLine();
         }

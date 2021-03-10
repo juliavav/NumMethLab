@@ -13,6 +13,7 @@ namespace NumMethLab4
         static void Main(string[] args)
         {
             lab1();
+            lab2();
             Console.ReadLine();
         }
 

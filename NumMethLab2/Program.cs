@@ -37,8 +37,8 @@ namespace NumMethLab2
             var simple = new SimpleIterations(F, Phi, Dphi, Constants.A, Constants.B);
             Console.WriteLine(simple.GetAnswer());
 
-            var simpleV2 = new SimpleIterationsV2(F, Phi, Dphi, Constants.Av2, Constants.Bv2);
-            Console.WriteLine(simpleV2.GetAnswer());
+            //var simpleV2 = new SimpleIterationsV2(F, Phi, Dphi, Constants.Av2, Constants.Bv2);
+            //Console.WriteLine(simpleV2.GetAnswer());
         }
 
         private static void Lab2()
